@@ -1,4 +1,4 @@
 # NoSQL
 outil NoSQL permettant
 
-d’analyser ses données et de les présenter sur un site web.
+d’analyser des données et de les présenter sur un site web.
