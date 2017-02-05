@@ -35,6 +35,12 @@ if (isset($_GET['delete']) && !(empty($_GET['delete']))) {
 
   } else {
     // save ajout
+
+    // TODO localisations
+    $latitude = 'todo';
+    $longitude = 'todo';
+
+    
     $u->add($prenom, $nom, $cp, $latitude, $longitude, $bureau);
   }
 
