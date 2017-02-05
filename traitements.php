@@ -1,6 +1,7 @@
 <?php
 require ('user.class.php');
 
+// delete
 if (isset($_GET['delete']) && !(empty($_GET['delete']))) {
 
   $id = new MongoId($_GET['delete']);
@@ -24,6 +25,12 @@ if (isset($_GET['delete']) && !(empty($_GET['delete']))) {
   if (isset($_POST['id_update'])) {
     // save update
     $id_update = $_POST['id_update'];
+
+
+    // TODO localisations
+    $latitude = 'todo';
+    $longitude = 'todo';
+
     $u->update($id_update, $prenom, $nom, $cp, $latitude, $longitude, $bureau);
 
   } else {

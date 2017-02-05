@@ -1,10 +1,17 @@
 <?php
+require ('user.class.php');
 
+echo "
+<a href='index.php'>Accueil</a>
+<a href='users.php'>Ajouter un utilisateur</a>
+<a href='import.php'>Importer via un CSV</a>
+<br><br>";
 
 // edition
 if (isset($_GET['edit']) && !empty($_GET['edit'])) {
+  $id_edit = $_GET['edit'];
   $u = new User();
-  $get_user = $u->get($_POST['edit']);
+  $get_user = $u->get($id_edit);
 
   ?>
 
@@ -24,7 +31,7 @@ if (isset($_GET['edit']) && !empty($_GET['edit'])) {
       <br /><label for="cp">Bureau</label>
       <br /><input type="text" id="bureau" name="bureau" value="<?php echo $get_user['bureau']; ?>" required />
 
-      <input type="hidden" name="id_update" value="<?php echo $id; ?>" />
+      <input type="hidden" name="id_update" value="<?php echo $id_edit; ?>" />
       <br /><input type="submit" value="Envoyer" />
   </form>
 

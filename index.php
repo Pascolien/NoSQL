@@ -1,15 +1,28 @@
 <?php
 require ('user.class.php');
 
+
+echo "
+<a href='index.php'>Accueil</a>
+<a href='users.php'>Ajouter un utilisateur</a>
+<a href='import.php'>Importer via un CSV</a>
+<br><br>";
+
 $u = new User();
 $users = $u->getAll();
 $count_users = $u->countAll();
 
-echo '<a href="users.php">Ajouter un utilisateur</a>';
-if ($count_users > 0){
+if ($count_users > 0) {
     echo '<p>' . $count_users . ' utilisateur(s) : </p>';
-    echo '<table>';
-    echo '<tr><th>firstname</th><th>lastname</th><th></th><th></tr>';
+    echo '<table border=1>';
+    echo '<tr>
+      <th>Prénom</th>
+      <th>Nom</th>
+      <th>Code postal</th>
+      <th>Latitude</th>
+      <th>Longitude</th>
+      <th>Bureau de distribution</th>
+    </tr>';
     foreach ($users as $user) {
         echo '<tr>';
         echo '<td>' . $user['prenom'] . '</td>';
@@ -24,6 +37,8 @@ if ($count_users > 0){
     }
     echo '</table>';
 
+} else {
+   echo "Aucun enregistrement";
 }
 
 
