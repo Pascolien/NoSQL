@@ -14,8 +14,9 @@
         echo "Impossible de modifier cet utilisateur car il n'existe plus ou n'a jamais existé";
     } else {
 ?>
-<form action="users.php" method="POST" />
-    <label for="firstname">Firstname</label>
+
+<form action="users.php" method="POST"  class="form-horizontal" role="form"/>
+    <label for="firstname" >Firstname</label>    
     <br /><input type="text" id="firstname" name="firstname" value="<?php if (isset($_GET['edit']) && !empty($_GET['edit'])) echo $get_user['firstname']; ?>" required />
     <br /><label for="lastname">Lastname</label>
     <br /><input type="text" id="lastname" name="lastname" value="<?php if (isset($_GET['edit']) && !empty($_GET['edit'])) echo $get_user['lastname']; ?>" required />
@@ -24,6 +25,8 @@
     <?php }; ?>
     <br /><input type="submit" value="Envoyer" />
 </form>
+</body>
+</html>
 <?php
     }
 ?>

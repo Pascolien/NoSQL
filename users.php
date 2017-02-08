@@ -15,10 +15,14 @@ if (isset($_GET['edit']) && !empty($_GET['edit'])) {
 
   ?>
 
-  <form action="traitements.php" method="POST" />
-      <label for="prenom">Prenom</label>
-      <br /><input type="text" id="prenom" name="prenom" value="<?php echo $get_user['prenom']; ?>" required />
 
+  <form action="traitements.php" method="POST" />
+   <div class="form-group">
+      <label for="prenom"  class="col-sm-2 control-label">Prenom</label>
+      <br />
+      <div class="col-sm-10">
+      <input type="text" id="prenom" name="prenom" value="<?php echo $get_user['prenom']; ?>" required />
+      </div>
       <br /><label for="nom">Nom</label>
       <br /><input type="text" id="nom" name="nom" value="<?php echo $get_user['nom']; ?>" required />
 

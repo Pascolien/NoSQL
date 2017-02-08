@@ -6,7 +6,7 @@
 <br><br>
 
 
-<form action="traitement_import.php">
+<form action="_import.php">
 <label>Votre fichier CSV: </label> <br> <input type="file" id="file" required>
 <input type="submit" value="Importer">
 </form>
