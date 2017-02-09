@@ -1,64 +1,57 @@
-
- 
-
-<a href='index.php'>Accueil</a>
-<a href='users.php'>Ajouter un utilisateur</a>
-<a href='import.php'>Importer via un CSV</a>
-<br><br>
 <?php
- 
-
-extract(filter_input_array("file"));
-$fichier=$_FILES["userfile"]["name"];
-    if($fichier){
-        //ouverture du fichier temporaire
-        $fp = fopen ($_FILES["userfile"]["tmp_name"],"r");
-    }else{
-        //fichier inconnu 
-?>
-    <p align="center" >- Importation echouee -</p>
-    <p align="center" >-<B>Desole, mais vous n'avez pas specifie de chemin valide ...</B></p>
-<?php exit();
-    }
-    $cpt=0;
-?>
-<p align="center">- Importation Reussie -</p>
-<?php // importation
-    while (!foef($fp)){
-        $ligne = fgets($fp,4096);
-        ///on crée un tableau des éléments séparés par des points virgule
-        $liste = explode(";",$ligne);
-        $table = filter_input("file",'userfile');
-
-      //1er éléments
-        $liste[0] = (isset($liste[0])) ? $liste[0] : Null;
-        $liste[1] = (isset($liste[1])) ? $liste[1] : Null;
-        $liste[2] = (isset($liste[2])) ? $liste[2] : Null;
-        $liste[3] = (isset($liste[3])) ? $liste[3] : Null;      
-        $champs1 = $liste[0];
-        $champs2 = $liste[1];
-        $champs3 = $liste[2];
-        $champs4 = $liste[3];
-        if($champ1!='')
+require ('user.class.php');
+/*****************************
+*  Structure de $final_row
+* prenom
+* nom
+* CP
+* latitude
+* longitude
+* bureau
+*****************************/
+if (isset($_FILES['file'])) {
+  if (isset($_FILES['file']['tmp_name'])){
+    $csv = $_FILES['file']['tmp_name'];
+    $file = fopen($csv, "a+");
+    $final_row = [];
+    $i = 0;
+    while($tab=fgetcsv($file, 1024, ';'))
+    {
+      // on ne lit pas la première ligne car c'est le header dy fichier
+      if ($i > 0) {
+        $champs = count($tab);
+        $row = array();
+        for($i=0; $i<$champs; $i ++)
         {
-          $cpt++;
-          $db =   
-          // Appel de la connexion
-          require_once('mongodb.php');
+          $row[] = $tab[$i];
+        }
+        $final_row[] = $row;
+      }
+      $i ++;
+    }
 
-            # [Conditions modification / ajout]
-            if (isset($_POST) && !empty($_POST)) {
+    // sauvegarde du tableau en base
+    foreach ($final_row as $row) {
+      $id = $row[0];
+      $prenom = $row[1];
+      $nom = $row[2];
+      $cp = $row[3];
+      $latitude = $row[4];
+      $longitude = $row[5];
+      $bureau = $row[6];
 
-                if (isset($_POST['user_id'])) {
-                    $id      = new MongoId($_POST['user_id']);
-                    $newdata = array('$set' => array('firstname' => $_POST['firstname'],
-                                                    'lastname'  => $_POST['lastname']));
-                    $c_users->insert(array('firstname' => $_POST['firstname'],
-                                        'lastname'  => $_POST['lastname']));
-                    }
-                }    
-            }}
-        //fermeture du fichier
-         fclose($fp);
-        ?>
+      $u = new User();
+      // TODO INSERER L'ID ?
+      $u->add($prenom, $nom, $cp, $latitude, $longitude, $bureau);
+    }
 
+    fclose($file);
+    echo "Données insérées avec succès";
+    // timer 1 seconde
+    header("Refresh: 1;url=index.php");
+  }
+} else {
+  echo "Pas de fichier uploadé";
+  // timer 1 seconde
+  header("Refresh: 1;url=index.php");
+}

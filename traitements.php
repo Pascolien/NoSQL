@@ -12,6 +12,16 @@ if (isset($_GET['delete']) && !(empty($_GET['delete']))) {
   header('Location: index.php');
   exit;
 
+// delete all
+} else if (isset($_GET['deleteAll']) && $_GET['deleteAll'] == 1) {
+  $u = new User();
+  $all = $u->getAll();
+  foreach ($all as $user) {
+    $u->delete($user['_id']);
+  }
+  echo "Toutes les données on été supprimées";
+  // timer 1 seconde
+  header("Refresh: 1;url=index.php");
 } else {
     // sauvegarde après add ou update
   if (isset($_POST['prenom']) && isset($_POST['nom']) && isset($_POST['cp']) && isset($_POST['bureau'])) {
@@ -40,7 +50,7 @@ if (isset($_GET['delete']) && !(empty($_GET['delete']))) {
     $latitude = 'todo';
     $longitude = 'todo';
 
-    
+
     $u->add($prenom, $nom, $cp, $latitude, $longitude, $bureau);
   }
 

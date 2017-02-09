@@ -22,6 +22,7 @@ if ($count_users > 0) {
       <th>Latitude</th>
       <th>Longitude</th>
       <th>Bureau de distribution</th>
+      <th colspan=2 ><a href="traitements.php?deleteAll=1">Supprimer tout</a></th>
     </tr>';
     foreach ($users as $user) {
         echo '<tr>';
