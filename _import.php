@@ -1,5 +1,6 @@
 
-<?php require ('user.class.php'); ?>
+ 
+
 <a href='index.php'>Accueil</a>
 <a href='users.php'>Ajouter un utilisateur</a>
 <a href='import.php'>Importer via un CSV</a>
@@ -7,7 +8,7 @@
 <?php
  
 
-extract(filter_input_array(INPUT_POST));
+extract(filter_input_array("file"));
 $fichier=$_FILES["userfile"]["name"];
     if($fichier){
         //ouverture du fichier temporaire
@@ -27,7 +28,7 @@ $fichier=$_FILES["userfile"]["name"];
         $ligne = fgets($fp,4096);
         ///on crée un tableau des éléments séparés par des points virgule
         $liste = explode(";",$ligne);
-        $table = filter_input(INPUT_POST,'userfile');
+        $table = filter_input("file",'userfile');
 
       //1er éléments
         $liste[0] = (isset($liste[0])) ? $liste[0] : Null;
