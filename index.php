@@ -99,7 +99,7 @@ if ($count_users > 0) {
                 <th>Latitude</th>
                 <th>Longitude</th>
                 <th>Bureau de distribution</th>
-                <th colspan=2 text-align=center>Actions</th>
+                <th colspan=2>Actions</th>
               </tr>
             </thead>
             <tbody>
