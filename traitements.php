@@ -38,37 +38,29 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
   header("Refresh: 1;url=index.php");
 } else {
     // sauvegarde après add ou update
-  if (isset($_POST['prenom']) && isset($_POST['nom']) && isset($_POST['cp']) && isset($_POST['bureau'])) {
+  if (isset($_POST['prenom']) && isset($_POST['nom']) && isset($_POST['cp']) && isset($_POST['latitude']) && isset($_POST['longitude']) && isset($_POST['bureau'])) {
     $prenom = $_POST['prenom'];
     $nom = $_POST['nom'];
     $cp = $_POST['cp'];
+    $latitude = $_POST['latitude'];
+    $longitude = $_POST['longitude'];
     $bureau = $_POST['bureau'];
-  }
 
-  $u = new User();
-  if (isset($_POST['id_update'])) {
-    // save update
-    $id_update = $_POST['id_update'];
+    $u = new User();
+    if (isset($_POST['id_update'])) {
+      // UPDATE
+      $id_update = $_POST['id_update'];
+      $u->update($id_update, $prenom, $nom, $cp, $latitude, $longitude, $bureau);
 
-
-    // TODO localisations
-    $latitude = 'todo';
-    $longitude = 'todo';
-
-    $u->update($id_update, $prenom, $nom, $cp, $latitude, $longitude, $bureau);
-
+    } else {
+      // AJOUT
+      $u->add($prenom, $nom, $cp, $latitude, $longitude, $bureau);
+    }
+      echo "<div class='alert alert-success'><strong>Les données ont été sauvegardées</div>";
   } else {
-    // save ajout
-
-    // TODO localisations
-    $latitude = 'todo';
-    $longitude = 'todo';
-
-
-    $u->add($prenom, $nom, $cp, $latitude, $longitude, $bureau);
+      echo "<div class='alert alert-warning'><strong>Paramètres manquants</div>";
   }
 
-  echo "<div class='alert alert-success'><strong>Les données ont été sauvegardées</div>";
   if ($show_only_invalide == 1) {
     header("Refresh: 1;url=index.php?invalide=1");
   } else {
