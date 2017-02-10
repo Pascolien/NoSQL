@@ -22,10 +22,9 @@
 
 <form action="_import.php" method="post" enctype="multipart/form-data" class="form-horizontal"role="form">
 <div class="form-group">
-    <label class="col-sm-2 control-label">Votre fichier CSV (10Mo max): </label> <br/>
+    <label class="col-sm-2 control-label">Votre fichier CSV </label> <br/>
     <div class="col-sm-5">
      <input type="file"   id="file"  class="form-control-file" name="file" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" required>
-     <input type="hidden"   name="MAX_FILE_SIZE" value="10000000">
      <br/>
      </div>
 </div>
