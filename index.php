@@ -63,13 +63,14 @@ if ($count_users > 0) {
   }
     // on affiche tous les enregistrements, même les invalides
   if ($show_only_invalide == false) {
-    $message = "$count_users enregistrements (dont <a href='?invalide=1'>$todo invalides</a>)";
+    $message = "$count_users enregistrements ( <span style=text-decoration:underline;>dont <a style='text-decoration:none;color:white;' href='?invalide=1'>$todo invalides</a></span> )";
 
     // on n'affiche que les invalides
   } else if ($show_only_invalide == true) {
     $users = $u->getAllInvalides();
     $count_users = $u->countAllInvalides();
-    $message = "$count_users enregistrements invalides. <a href='index.php'>Retour vers la liste complète</a>";
+    $count_users_total = $u->countAll();
+    $message = "$count_users enregistrements invalides ( sur $count_users_total ) <a style=text-decoration:underline; href='index.php'>Retour vers la liste complète</a>";
   }
 
 ?>
