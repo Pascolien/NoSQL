@@ -16,9 +16,9 @@ require ('user.class.php');
 
 
 echo '<div class="btn-group">
-        <a href="index.php" class="btn btn-primary">Accueil</a> 
-        <a href="users.php"class="btn btn-primary">Ajouter un utilisateur</a> 
-        <a href="import.php"class="btn btn-primary">Importer via un CSV</a> 
+        <a href="index.php" class="btn btn-primary">Accueil</a>
+        <a href="users.php"class="btn btn-primary">Ajouter un utilisateur</a>
+        <a href="import.php"class="btn btn-primary">Importer via un CSV</a>
         <br><br>
     </div>';
 $u = new User();
@@ -57,7 +57,7 @@ if ($count_users > 0) {
     echo'</div>';
 
 } else {
-   echo "Aucun enregistrement";
+   echo "<br><br>Aucun enregistrement";
 }
 
 
