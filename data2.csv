@@ -17,7 +17,7 @@
 16;Uriel;Miranda;92077;42,59945;-9,63026;Ferrere
 17;Xerxes;Conrad;51809;69,43062;166,56061;Anderlues
 18;Amethyst;Joseph;392;-37,02602;-50,73758;Graven Grez-Doiceau
-19;Hope;Duffy;77740;-44,25476;-74,91196;Cádiz
+19;Hope;Duffy;77740;-44,25476;-74,91196;
 20;Craig;Watson;TH3N 9HA;17,85355;-91,80584;Saltara
 21;Zelda;Wyatt;330676;-71,48027;-115,42267;Colleretto Castelnuovo
 22;Hedy;Gallegos;177826;46,7416;42,8356;Boechout
@@ -32,7 +32,7 @@
 31;Herrod;Mack;22979;-41,63931;-7,64208;Juazeiro
 32;Gay;Hubbard;81294;-5,62169;-139,66981;Corvino San Quirico
 33;Ian;Watson;10979-453;-14,36507;130,73455;Lampa
-34;Beatrice;Morton;90841;41,93938;-155,88134;Varsenare
+34;Beatrice;Morton;90841;41,93938;;
 35;Callie;Francis;67854;69,31528;147,24804;Airdrie
 36;Maisie;Kirby;15887;74,98331;-124,7547;Belfast
 37;Meredith;Sykes;1006;-3,49584;-13,75813;Biarritz
@@ -78,7 +78,7 @@
 77;Micah;Alexander;MG65 8IA;86,8542;-13,32152;Etalle
 78;September;Levy;9894GZ;68,7759;159,50825;Oetingen
 79;Daria;Patton;67997;19,8884;137,63052;Modakeke
-80;Emery;Horton;8007WK;25,56739;1,19732;Novo Hamburgo
+80;Emery;Horton;;25,56739;1,19732;Novo Hamburgo
 81;Jacqueline;Russell;32-025;26,41236;-32,64701;Sasaram
 82;Alfonso;Leon;3813;10,38173;82,82796;Quillota
 83;Georgia;Peck;1060;-33,24768;-151,08283;Aparecida de Goiânia

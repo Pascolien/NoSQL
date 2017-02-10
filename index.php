@@ -28,6 +28,9 @@
 		.panel-body{
 			display: none;
 		}
+    td:empty{
+      background: #d9534f;
+    }
     </style>
 <body>
 
@@ -46,6 +49,14 @@ $users = $u->getAll();
 $count_users = $u->countAll();
 
 if ($count_users > 0) {
+
+  // on compte le nombre d'enregistrements qu'il nous reste à renseigner
+  $todo = 0;
+  foreach ($users as $user) {
+    if ($user['cp'] == '' || $user['latitude'] == '' || $user['longitude'] == '' || $user['bureau'] == '') {
+      $todo++;
+    }
+  }
 ?>
 
 <div class="container">
@@ -53,7 +64,7 @@ if ($count_users > 0) {
       <div class="col-md-12">
         <div class="panel panel-primary">
           <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $count_users;?> enregistrements</h3>
+            <h3 class="panel-title"><?php echo $count_users;?> enregistrements (dont <?php echo $todo;?> incomplets)</h3>
             <div class="pull-right">
               <span class="clickable filter" data-toggle="tooltip" title="Toggle table filter" data-container="body">
                 <i class="glyphicon glyphicon-filter"></i>
@@ -73,7 +84,7 @@ if ($count_users > 0) {
                 <th>Latitude</th>
                 <th>Longitude</th>
                 <th>Bureau de distribution</th>
-                <th>Action</th>
+                <th colspan=2>Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -88,6 +99,7 @@ if ($count_users > 0) {
                   echo '<td>' . $user['longitude'] . '</td>';
                   echo '<td>' . $user['bureau'] . '</td>';
                   echo '<td><a href="users.php?edit=' . $user['_id'] . '"class="btn btn-secondary">Modifier</td>';
+                  echo '<td><a href="traitements.php?delete=' . $user['_id'] . '"class="btn btn-secondary">Supprimer</td>';
                   echo '</tr>';
               }
               ?>
