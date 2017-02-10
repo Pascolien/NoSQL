@@ -90,13 +90,13 @@ if (isset($_GET['edit']) && !empty($_GET['edit'])) {
             <div class="form-group">
               <label for="cp"  class="col-sm-2 control-label">Latitude</label>
               <div class="col-sm-5">
-              <input type="text" id="latitude" class="form-control"  name="latitude" value="<?php echo $get_user['latitude']; ?>" />
+              <input type="text" id="latitude" class="form-control"  name="latitude" value="<?php echo $get_user['latitude']; ?>" required />
                 </div>
             </div>
             <div class="form-group">
               <label for="cp"  class="col-sm-2 control-label">Longitude</label>
               <div class="col-sm-5">
-              <input type="text" id="longitude" class="form-control"  name="longitude" value="<?php echo $get_user['longitude']; ?>" />
+              <input type="text" id="longitude" class="form-control"  name="longitude" value="<?php echo $get_user['longitude']; ?>"  required/>
                 </div>
             </div>
           </span>
@@ -168,13 +168,13 @@ if (isset($_GET['edit']) && !empty($_GET['edit'])) {
             <div class="form-group">
               <label for="cp" class="col-sm-2 control-label">Latitude</label>
               <div class="col-sm-5">
-                <input type="text" id="latitude" class="form-control"  name="latitude" value="" />
+                <input type="text" id="latitude" class="form-control"  name="latitude" value="" required />
               </div>
             </div>
             <div class="form-group">
               <label for="cp" class="col-sm-2 control-label">Longitude</label>
               <div class="col-sm-5">
-                <input type="text" id="longitude" class="form-control"  name="longitude" value="" />
+                <input type="text" id="longitude" class="form-control"  name="longitude" value="" required/>
               </div>
             </div>
           </span>

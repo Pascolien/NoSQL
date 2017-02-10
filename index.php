@@ -29,7 +29,7 @@
 			display: none;
 		}
     td:empty{
-      background: #d9534f;
+      background: rgba(217, 83, 79, 0.51);
     }
     </style>
 <body>
