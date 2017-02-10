@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <?php
 require ('user.class.php');
 
@@ -16,10 +17,11 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
   $u = new User();
 
   $u->delete($id);
+    echo "<div class='alert alert-success'><strong>Enregistrement supprimé</div>";
   if ($show_only_invalide == 1) {
-    header('Location: index.php?invalide=1');
+    header("Refresh: 1;url=index.php?invalide=1");
   } else {
-    header('Location: index.php');
+    header("Refresh: 1;url=index.php");
   }
 
   exit;
@@ -31,7 +33,7 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
   foreach ($all as $user) {
     $u->delete($user['_id']);
   }
-  echo "Toutes les données on été supprimées";
+  echo "<div class='alert alert-success'><strong>Toutes les données ont été supprimées</div>";
   // timer 1 seconde
   header("Refresh: 1;url=index.php");
 } else {
@@ -66,10 +68,11 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
     $u->add($prenom, $nom, $cp, $latitude, $longitude, $bureau);
   }
 
+  echo "<div class='alert alert-success'><strong>Les données ont été sauvegardées</div>";
   if ($show_only_invalide == 1) {
-    header('Location: index.php?invalide=1');
+    header("Refresh: 1;url=index.php?invalide=1");
   } else {
-    header('Location: index.php');
+    header("Refresh: 1;url=index.php");
   }
   exit;
 

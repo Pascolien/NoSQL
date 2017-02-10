@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <?php
 require ('user.class.php');
 /*****************************
@@ -46,12 +47,12 @@ if (isset($_FILES['file'])) {
     }
 
     fclose($file);
-    echo "Données insérées avec succès";
+    echo "<div class='alert alert-success'><strong>Données importées avec succès</div>";
     // timer 1 seconde
     header("Refresh: 1;url=index.php");
   }
 } else {
-  echo "Pas de fichier uploadé";
+  echo "<div class='alert alert-warning'><strong>Pas de fichier uploadé !</div>";
   // timer 1 seconde
   header("Refresh: 1;url=index.php");
 }
