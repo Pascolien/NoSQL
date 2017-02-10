@@ -74,13 +74,13 @@ if (isset($_GET['edit']) && !empty($_GET['edit'])) {
             <div class="form-group">
               <label for="cp"  class="col-sm-2 control-label">Latitude</label>
               <div class="col-sm-5">
-              <input type="text" id="cp" class="form-control"  name="latitude" value="<?php echo $get_user['latitude']; ?>" required />
+              <input type="text" id="latitude" class="form-control"  name="latitude" value="<?php echo $get_user['latitude']; ?>" />
                 </div>
             </div>
             <div class="form-group">
               <label for="cp"  class="col-sm-2 control-label">Longitude</label>
               <div class="col-sm-5">
-              <input type="text" id="cp" class="form-control"  name="longitude" value="<?php echo $get_user['longitude']; ?>" required />
+              <input type="text" id="longitude" class="form-control"  name="longitude" value="<?php echo $get_user['longitude']; ?>" />
                 </div>
             </div>
           </span>
@@ -153,13 +153,13 @@ if (isset($_GET['edit']) && !empty($_GET['edit'])) {
             <div class="form-group">
               <label for="cp" class="col-sm-2 control-label">Latitude</label>
               <div class="col-sm-5">
-                <input type="text" id="cp" class="form-control"  name="latitude" value="" required />
+                <input type="text" id="latitude" class="form-control"  name="latitude" value="" />
               </div>
             </div>
             <div class="form-group">
               <label for="cp" class="col-sm-2 control-label">Longitude</label>
               <div class="col-sm-5">
-                <input type="text" id="cp" class="form-control"  name="longitude" value="" required />
+                <input type="text" id="longitude" class="form-control"  name="longitude" value="" />
               </div>
             </div>
           </span>
@@ -187,9 +187,15 @@ if (isset($_GET['edit']) && !empty($_GET['edit'])) {
  $( document ).ready(function() {
    $("#enable_geolocalisation").change(function() {
      if($(this).is(":checked")) {
-         $(".to_hide").css("display","none");
-     } else {
-       $(".to_hide").show();
+         function maPosition(position) {
+            var lat = position.coords.latitude;
+            var long = position.coords.longitude;
+            $("#latitude").val(lat);
+            $("#longitude").val(long);
+          }
+          if(navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(maPosition);
+          }
      }
   });
 });
