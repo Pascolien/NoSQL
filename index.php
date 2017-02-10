@@ -69,7 +69,7 @@ if ($count_users > 0) {
   } else if ($show_only_invalide == true) {
     $users = $u->getAllInvalides();
     $count_users = $u->countAllInvalides();
-    $message = "$count_users enregistrements invalides. <a href='index.php'>Retour vers la liste totale</a>";
+    $message = "$count_users enregistrements invalides. <a href='index.php'>Retour vers la liste complète</a>";
   }
 
 ?>
