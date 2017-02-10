@@ -10,7 +10,7 @@
   <script src="function_table.js"></script>
 </head>
 <style>
-.row{
+.row {
 		    margin-top:40px;
 		    padding: 0 10px;
 		}
@@ -37,6 +37,11 @@
 <?php
 require ('user.class.php');
 
+$show_only_invalide = false;
+if (isset($_GET['invalide']) && $_GET['invalide'] == 1) {
+  $show_only_invalide = true;
+}
+
 echo '<div class="btn-group">
         <a href="index.php" class="btn btn-primary">Accueil</a>
         <a href="users.php" class="btn btn-primary">Ajouter un utilisateur</a>
@@ -49,7 +54,6 @@ $users = $u->getAll();
 $count_users = $u->countAll();
 
 if ($count_users > 0) {
-
   // on compte le nombre d'enregistrements qu'il nous reste à renseigner
   $todo = 0;
   foreach ($users as $user) {
@@ -57,6 +61,17 @@ if ($count_users > 0) {
       $todo++;
     }
   }
+    // on affiche tous les enregistrements, même les invalides
+  if ($show_only_invalide == false) {
+    $message = "$count_users enregistrements (dont <a href='?invalide=1'>$todo invalides</a>)";
+
+    // on n'affiche que les invalides
+  } else if ($show_only_invalide == true) {
+    $users = $u->getAllInvalides();
+    $count_users = $u->countAllInvalides();
+    $message = "$count_users enregistrements invalides. <a href='index.php'>Retour vers la liste totale</a>";
+  }
+
 ?>
 
 <div class="container">
@@ -64,7 +79,7 @@ if ($count_users > 0) {
       <div class="col-md-12">
         <div class="panel panel-primary">
           <div class="panel-heading">
-            <h3 class="panel-title"><?php echo $count_users;?> enregistrements (dont <?php echo $todo;?> incomplets)</h3>
+            <h3 class="panel-title"><?php echo $message; ?></h3>
             <div class="pull-right">
               <span class="clickable filter" data-toggle="tooltip" title="Toggle table filter" data-container="body">
                 <i class="glyphicon glyphicon-filter"></i>
@@ -110,7 +125,8 @@ if ($count_users > 0) {
     </div>
 </div>
 
-  <?php
+<?php
+// aucun enregistrements
 } else {
 ?>
 

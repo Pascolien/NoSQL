@@ -55,8 +55,32 @@ class User {
     return $users = $this->c_users->find();
   }
 
+// retourne que les enregistrements invalides
+  public function getAllInvalides() {
+    $users = $this->c_users->find();
+    $ret = [];
+    foreach ($users as $user) {
+      if ($user['cp'] == '' || $user['latitude'] == '' || $user['longitude'] == '' || $user['bureau'] == '') {
+        $ret[] = $user;
+      }
+    }
+    return $ret;
+  }
+
   public function countAll() {
     return $this->c_users->count();
+  }
+
+// compte que les invalides
+  public function countAllInvalides() {
+    $users = $this->c_users->find();
+    $ret = [];
+    foreach ($users as $user) {
+      if ($user['cp'] == '' || $user['latitude'] == '' || $user['longitude'] == '' || $user['bureau'] == '') {
+        $ret[] = $user;
+      }
+    }
+    return count($ret);
   }
 
 
