@@ -46,7 +46,7 @@ echo '<div class="btn-group">
         <a href="index.php" class="btn btn-primary">Accueil</a>
         <a href="users.php" class="btn btn-primary">Ajouter un utilisateur</a>
         <a href="import.php" class="btn btn-primary">Importer via un CSV</a>
-        <a href="traitements.php?deleteAll=1" class="btn btn-primary">Supprimer tout</a>
+        <a onclick="return confirm(\'Supprimer toutes les entrées ?\')" href="traitements.php?deleteAll=1" class="btn btn-primary">Supprimer tout</a>
         <br><br>
     </div>';
 $u = new User();
