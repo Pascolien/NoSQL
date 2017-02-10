@@ -12,12 +12,17 @@
 
 
 <?php
+$show_only_invalide = 0;
+if (isset($_GET['invalide']) && $_GET['invalide'] == 1) {
+  $show_only_invalide = 1;
+}
+
 require ('user.class.php');
 
 echo '<div class="btn-group">
-        <a href="index.php" class="btn btn-primary">Accueil</a> 
-        <a href="users.php"class="btn btn-primary">Ajouter un utilisateur</a> 
-        <a href="import.php"class="btn btn-primary">Importer via un CSV</a> 
+        <a href="index.php" class="btn btn-primary">Accueil</a>
+        <a href="users.php"class="btn btn-primary">Ajouter un utilisateur</a>
+        <a href="import.php"class="btn btn-primary">Importer via un CSV</a>
         <br><br>
     </div>';
 
@@ -59,11 +64,12 @@ if (isset($_GET['edit']) && !empty($_GET['edit'])) {
           <br /><input type="text" id="bureau"  class="form-control" name="bureau" value="<?php echo $get_user['bureau']; ?>" required />
         </div>
       </div>
-      
+
       <input type="hidden" name="id_update" value="<?php echo $id_edit; ?>" />
       <br />
        <div class="form-group row">
         <div class="offset-sm-2 col-sm-10">
+          <input type=hidden name="invalide" value=<?php echo $show_only_invalide;?>>
          <input type="submit" class="btn btn-primary" value="Envoyer" />
         </div>
       </div>
@@ -107,7 +113,7 @@ if (isset($_GET['edit']) && !empty($_GET['edit'])) {
           <input type="text" id="bureau" class="form-control" name="bureau" value="" required />
         </div>
       </div>
-
+      <input type=hidden name="invalide" value=<?php echo $show_only_invalide;?>>
       <br /><input type="submit"  class="btn btn-primary" value="Envoyer" />
   </form>
 

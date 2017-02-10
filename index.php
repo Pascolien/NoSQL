@@ -37,9 +37,9 @@
 <?php
 require ('user.class.php');
 
-$show_only_invalide = false;
+$show_only_invalide = 0;
 if (isset($_GET['invalide']) && $_GET['invalide'] == 1) {
-  $show_only_invalide = true;
+  $show_only_invalide = 1;
 }
 
 echo '<div class="btn-group">
@@ -81,13 +81,13 @@ if ($count_users > 0) {
           <div class="panel-heading">
             <h3 class="panel-title"><?php echo $message; ?></h3>
             <div class="pull-right">
-              <span class="clickable filter" data-toggle="tooltip" title="Toggle table filter" data-container="body">
+              <span class="clickable filter" data-toggle="tooltip" title="Filtrer" data-container="body">
                 <i class="glyphicon glyphicon-filter"></i>
               </span>
             </div>
           </div>
           <div class="panel-body">
-            <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#dev-table" placeholder="Filter Developers" />
+            <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#dev-table" placeholder="Votre filtre" />
           </div>
           <table class="table table-hover" id="dev-table">
             <thead>
@@ -113,8 +113,8 @@ if ($count_users > 0) {
                   echo '<td>' . $user['latitude'] . '</td>';
                   echo '<td>' . $user['longitude'] . '</td>';
                   echo '<td>' . $user['bureau'] . '</td>';
-                  echo '<td><a href="users.php?edit=' . $user['_id'] . '"class="btn btn-secondary">Modifier</td>';
-                  echo '<td><a href="traitements.php?delete=' . $user['_id'] . '"class="btn btn-secondary">Supprimer</td>';
+                  echo '<td><a href="users.php?edit=' . $user['_id'] . '&invalide=' . $show_only_invalide . ' "class="btn btn-secondary">Modifier</td>';
+                  echo '<td><a href="traitements.php?delete=' . $user['_id'] . '&invalide=' . $show_only_invalide . ' "class="btn btn-secondary">Supprimer</td>';
                   echo '</tr>';
               }
               ?>

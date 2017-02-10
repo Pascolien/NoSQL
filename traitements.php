@@ -1,15 +1,27 @@
 <?php
 require ('user.class.php');
 
+$show_only_invalide = 0;
+if (isset($_POST['invalide']) && $_POST['invalide'] == 1) {
+  $show_only_invalide = 1;
+} else if (isset($_GET['invalide']) && $_GET['invalide'] == 1) {
+  $show_only_invalide = 1;
+}
+
 // delete
-if (isset($_GET['delete']) && !(empty($_GET['delete']))) {
+if (isset($_GET['delete']) && !empty($_GET['delete'])) {
 
   $id = new MongoId($_GET['delete']);
 
   $u = new User();
 
   $u->delete($id);
-  header('Location: index.php');
+  if ($show_only_invalide == 1) {
+    header('Location: index.php?invalide=1');
+  } else {
+    header('Location: index.php');
+  }
+
   exit;
 
 // delete all
@@ -54,7 +66,11 @@ if (isset($_GET['delete']) && !(empty($_GET['delete']))) {
     $u->add($prenom, $nom, $cp, $latitude, $longitude, $bureau);
   }
 
-  header('Location: index.php');
+  if ($show_only_invalide == 1) {
+    header('Location: index.php?invalide=1');
+  } else {
+    header('Location: index.php');
+  }
   exit;
 
 
