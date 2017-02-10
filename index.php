@@ -41,14 +41,33 @@ $show_only_invalide = 0;
 if (isset($_GET['invalide']) && $_GET['invalide'] == 1) {
   $show_only_invalide = 1;
 }
+?>
 
-echo '<div class="btn-group">
-        <a href="index.php" class="btn btn-primary">Accueil</a>
-        <a href="users.php" class="btn btn-primary">Ajouter un utilisateur</a>
-        <a href="import.php" class="btn btn-primary">Importer via un CSV</a>
-        <a onclick="return confirm(\'Supprimer tous les enregistrements ?\')" href="traitements.php?deleteAll=1" class="btn btn-primary">Supprimer tout</a>
-        <br><br>
-    </div>';
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Outil de migration</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li <?php if ($show_only_invalide == 0) { echo "class=active";} ?>><a href="index.php">Tous les enregistrements</a></li>
+        <li <?php if ($show_only_invalide == 1) { echo "class=active";} ?>><a href="index.php?invalide=1">Liste des enregistrements invalides</a></li>
+        <li><a href="users.php">Ajouter un utilisateur</a></li>
+        <li class=""><a href="import.php">Importer via un CSV</a></li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container-fluid -->
+</nav>
+<br><br><br>
+
+<?php
+
 $u = new User();
 $users = $u->getAll();
 $count_users = $u->countAll();

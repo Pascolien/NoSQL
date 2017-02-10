@@ -18,14 +18,32 @@ if (isset($_GET['invalide']) && $_GET['invalide'] == 1) {
 }
 
 require ('user.class.php');
+?>
 
-echo '<div class="btn-group">
-        <a href="index.php" class="btn btn-primary">Accueil</a>
-        <a href="users.php"class="btn btn-primary">Ajouter un utilisateur</a>
-        <a href="import.php"class="btn btn-primary">Importer via un CSV</a>
-        <br><br>
-    </div>';
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Outil de migration</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="index.php">Tous les enregistrements</a></li>
+        <li><a href="index.php?invalide=1">Liste des enregistrements invalides</a></li>
+        <li class=active ><a href="users.php">Ajouter un utilisateur</a></li>
+        <li class=""><a href="import.php">Importer via un CSV</a></li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container-fluid -->
+</nav>
+<br><br><br>
 
+<?php
 // edition
 if (isset($_GET['edit']) && !empty($_GET['edit'])) {
   $id_edit = $_GET['edit'];
@@ -33,9 +51,7 @@ if (isset($_GET['edit']) && !empty($_GET['edit'])) {
   $get_user = $u->get($id_edit);
 
   ?>
-  <br><br><br>
   <h3 style="text-align:center;">Mise à jour d'un enregistrement</h3>
-  <br><br>
 
   <div class="container">
     <div class="row">
@@ -109,10 +125,9 @@ if (isset($_GET['edit']) && !empty($_GET['edit'])) {
 // ajout
 } else {
 ?>
-<br><br><br>
+<br>
 <h3 style="text-align:center;">Ajout d'un enregistrement</h3>
 <br><br>
-
 <div class="container">
   <div class="row">
     <div class="col-sm-10 col-sm-offset-2">
