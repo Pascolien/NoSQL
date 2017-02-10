@@ -59,18 +59,31 @@ if (isset($_GET['edit']) && !empty($_GET['edit'])) {
             <input type="text" id="cp" class="form-control"  name="cp" value="<?php echo $get_user['cp']; ?>" required />
               </div>
           </div>
+
           <div class="form-group">
-            <label for="cp"  class="col-sm-2 control-label">Latitude</label>
             <div class="col-sm-5">
-            <input type="text" id="cp" class="form-control"  name="latitude" value="<?php echo $get_user['latitude']; ?>" required />
-              </div>
+              <label class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" name="enable_geolocalisation" id="enable_geolocalisation">
+                <span class="custom-control-indicator"></span>
+                <span class="custom-control-description">Utiliser ma position actuelle</span>
+              </label>
+            </div>
           </div>
-          <div class="form-group">
-            <label for="cp"  class="col-sm-2 control-label">Longitude</label>
-            <div class="col-sm-5">
-            <input type="text" id="cp" class="form-control"  name="longitude" value="<?php echo $get_user['longitude']; ?>" required />
-              </div>
-          </div>
+
+          <span class="to_hide">
+            <div class="form-group">
+              <label for="cp"  class="col-sm-2 control-label">Latitude</label>
+              <div class="col-sm-5">
+              <input type="text" id="cp" class="form-control"  name="latitude" value="<?php echo $get_user['latitude']; ?>" required />
+                </div>
+            </div>
+            <div class="form-group">
+              <label for="cp"  class="col-sm-2 control-label">Longitude</label>
+              <div class="col-sm-5">
+              <input type="text" id="cp" class="form-control"  name="longitude" value="<?php echo $get_user['longitude']; ?>" required />
+                </div>
+            </div>
+          </span>
            <div class="form-group">
             <label for="cp" class="col-sm-2 control-label">Bureau</label>
             <div class="col-sm-5">
@@ -125,18 +138,32 @@ if (isset($_GET['edit']) && !empty($_GET['edit'])) {
             <input type="text" class="form-control" id="cp" name="cp" value="" required />
             </div>
           </div>
+
           <div class="form-group">
-            <label for="cp"  class="col-sm-2 control-label">Latitude</label>
             <div class="col-sm-5">
-            <input type="text" id="cp" class="form-control"  name="latitude" value="" required />
-              </div>
+              <label class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" name="enable_geolocalisation" id="enable_geolocalisation">
+                <span class="custom-control-indicator"></span>
+                <span class="custom-control-description">Utiliser ma position actuelle</span>
+              </label>
+            </div>
           </div>
-          <div class="form-group">
-            <label for="cp"  class="col-sm-2 control-label">Longitude</label>
-            <div class="col-sm-5">
-            <input type="text" id="cp" class="form-control"  name="longitude" value="" required />
+
+          <span class="to_hide">
+            <div class="form-group">
+              <label for="cp" class="col-sm-2 control-label">Latitude</label>
+              <div class="col-sm-5">
+                <input type="text" id="cp" class="form-control"  name="latitude" value="" required />
               </div>
-          </div>
+            </div>
+            <div class="form-group">
+              <label for="cp" class="col-sm-2 control-label">Longitude</label>
+              <div class="col-sm-5">
+                <input type="text" id="cp" class="form-control"  name="longitude" value="" required />
+              </div>
+            </div>
+          </span>
+
           <div class="form-group">
             <label for="bureau"  class="col-sm-2 control-label">Bureau</label>
             <div class="col-sm-5">
@@ -156,5 +183,16 @@ if (isset($_GET['edit']) && !empty($_GET['edit'])) {
 }
 
  ?>
+ <script>
+ $( document ).ready(function() {
+   $("#enable_geolocalisation").change(function() {
+     if($(this).is(":checked")) {
+         $(".to_hide").css("display","none");
+     } else {
+       $(".to_hide").show();
+     }
+  });
+});
+ </script>
  </body>
  </html>
