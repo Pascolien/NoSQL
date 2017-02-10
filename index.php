@@ -49,8 +49,8 @@ if ($count_users > 0) {
         echo '<td>' . $user['latitude'] . '</td>';
         echo '<td>' . $user['longitude'] . '</td>';
         echo '<td>' . $user['bureau'] . '</td>';
-        echo '<td><a href="users.php?edit=' . $user['_id'] . '">Modifier</td>';
-        echo '<td><a href="traitements.php?delete=' . $user['_id'] . '">Supprimer</td>';
+        echo '<td><a href="users.php?edit=' . $user['_id'] . '"class="btn btn-secondary">Modifier</td>';
+        echo '<td><a href="traitements.php?delete=' . $user['_id'] . '"class="btn btn-secondary">Supprimer</td>';
         echo '</tr>';
     }
     echo '</table>';
