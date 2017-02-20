@@ -1,6 +1,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <?php
 require ('user.class.php');
+require ('barcode.php');
 
 $show_only_invalide = 0;
 if (isset($_POST['invalide']) && $_POST['invalide'] == 1) {
@@ -56,6 +57,17 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
       // AJOUT
       $u->add($prenom, $nom, $cp, $latitude, $longitude, $bureau);
     }
+
+
+    // creation des codes barre
+    $u = new User();
+    $all = $u->getAll();
+    foreach ($all as $a) {
+      $filename = $a['_id']; // filename = ID
+      $data = randStrGen(12); // 12 caracteres
+      CodeBarre::create($data, $filename);
+    }
+
       echo "<div class='alert alert-success'><strong>Les données ont été sauvegardées</div>";
   } else {
       echo "<div class='alert alert-warning'><strong>Paramètres manquants</div>";
@@ -71,5 +83,15 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
 
 }
 
+function randStrGen($len){
+    $result = "";
+    $chars = "0123456789";
+    $charArray = str_split($chars);
+    for($i = 0; $i < $len; $i++) {
+	    $randItem = array_rand($charArray);
+	    $result .= "".$charArray[$randItem];
+    }
+    return $result;
+}
 
  ?>

@@ -60,6 +60,8 @@ if (isset($_GET['invalide']) && $_GET['invalide'] == 1) {
         <li <?php if ($show_only_invalide == 1) { echo "class=active";} ?>><a href="index.php?invalide=1">Liste des enregistrements invalides</a></li>
         <li><a href="users.php">Ajouter un utilisateur</a></li>
         <li class=""><a href="import.php">Importer via un CSV</a></li>
+        <li><a href="codebarre.php">Générer les codes barre manquants</a></li>
+        <li><a href="traitements.php?deleteAll=1">Tout supprimer</a></li>
       </ul>
     </div><!--/.nav-collapse -->
   </div><!--/.container-fluid -->
@@ -119,12 +121,17 @@ if ($count_users > 0) {
                 <th>Latitude</th>
                 <th>Longitude</th>
                 <th>Bureau de distribution</th>
-                <th colspan=2>Actions</th>
+                <th>Code barre</th>
+                <th colspan=2></th>
               </tr>
             </thead>
             <tbody>
               <?php
               foreach ($users as $user) {
+                  if (file_exists('images/' . $user['_id'] . '.png')) {
+                    $filename = $user['_id'];
+                    $codebarre = "<img src = 'images/$filename.png'/>";
+                  }
                   echo '<tr>';
                   echo '<td>' . $user['_id'] . '</td>';
                   echo '<td>' . $user['prenom'] . '</td>';
@@ -133,8 +140,9 @@ if ($count_users > 0) {
                   echo '<td>' . $user['latitude'] . '</td>';
                   echo '<td>' . $user['longitude'] . '</td>';
                   echo '<td>' . $user['bureau'] . '</td>';
-                  echo '<td><a href="users.php?edit=' . $user['_id'] . '&invalide=' . $show_only_invalide . ' "class="btn btn-secondary">Modifier</td>';
-                  echo '<td><a href="traitements.php?delete=' . $user['_id'] . '&invalide=' . $show_only_invalide . ' "class="btn btn-secondary">Supprimer</td>';
+                  echo "<td>$codebarre</td>";
+                  echo '<td><a href="users.php?edit=' . $user['_id'] . '&invalide=' . $show_only_invalide . ' "class="btn btn-secondary"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></td>';
+                  echo '<td><a href="traitements.php?delete=' . $user['_id'] . '&invalide=' . $show_only_invalide . ' "class="btn btn-secondary"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></td>';
                   echo '</tr>';
               }
               ?>

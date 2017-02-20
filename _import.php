@@ -1,6 +1,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <?php
 require ('user.class.php');
+require ('barcode.php');
 /*****************************
 *  Structure de $final_row
 * prenom
@@ -47,6 +48,16 @@ if (isset($_FILES['file'])) {
     }
 
     fclose($file);
+
+    // creation des codes barre
+    $u = new User();
+    $all = $u->getAll();
+    foreach ($all as $a) {
+      $filename = $a['_id']; // filename = ID
+      $data = randStrGen(12); // 12 caracteres
+      CodeBarre::create($data, $filename);
+    }
+
     echo "<div class='alert alert-success'><strong>Données importées avec succès</div>";
     // timer 1 seconde
     header("Refresh: 1;url=index.php");
@@ -55,4 +66,15 @@ if (isset($_FILES['file'])) {
   echo "<div class='alert alert-warning'><strong>Pas de fichier uploadé !</div>";
   // timer 1 seconde
   header("Refresh: 1;url=index.php");
+}
+
+function randStrGen($len){
+    $result = "";
+    $chars = "0123456789";
+    $charArray = str_split($chars);
+    for($i = 0; $i < $len; $i++) {
+	    $randItem = array_rand($charArray);
+	    $result .= "".$charArray[$randItem];
+    }
+    return $result;
 }
