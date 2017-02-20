@@ -18,6 +18,11 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
   $u = new User();
 
   $u->delete($id);
+
+  // delete code barre
+  if (file_exists('images/' . $id . '.png')) {
+    unlink('images/' . $id . '.png');
+  }
     echo "<div class='alert alert-success'><strong>Enregistrement supprimé</div>";
   if ($show_only_invalide == 1) {
     header("Refresh: 1;url=index.php?invalide=1");
@@ -33,6 +38,10 @@ if (isset($_GET['delete']) && !empty($_GET['delete'])) {
   $all = $u->getAll();
   foreach ($all as $user) {
     $u->delete($user['_id']);
+    // delete code barre
+    if (file_exists('images/' . $user['_id'] . '.png')) {
+      unlink('images/' . $user['_id'] . '.png');
+    }
   }
   echo "<div class='alert alert-success'><strong>Toutes les données ont été supprimées</div>";
   // timer 1 seconde
