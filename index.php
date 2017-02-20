@@ -128,6 +128,7 @@ if ($count_users > 0) {
             <tbody>
               <?php
               foreach ($users as $user) {
+                  $codebarre = "&nbsp;";
                   if (file_exists('images/' . $user['_id'] . '.png')) {
                     $filename = $user['_id'];
                     $codebarre = "<img src = 'images/$filename.png'/>";
