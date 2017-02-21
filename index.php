@@ -84,7 +84,7 @@ if ($count_users > 0) {
   }
     // on affiche tous les enregistrements, même les invalides
   if ($show_only_invalide == false) {
-    $message = "$count_users enregistrements ( <span style=text-decoration:underline;>dont <a style='text-decoration:none;color:white;' href='?invalide=1'>$todo invalides</a></span> )";
+    $message = "$count_users enregistrements ( <span style=text-decoration:underline;><a style='text-decoration:none;color:white;' href='?invalide=1'>dont $todo invalides</a></span> )";
 
     // on n'affiche que les invalides
   } else if ($show_only_invalide == true) {
