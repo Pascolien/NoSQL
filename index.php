@@ -141,7 +141,7 @@ if ($count_users > 0) {
                   echo '<td>' . $user['latitude'] . '</td>';
                   echo '<td>' . $user['longitude'] . '</td>';
                   echo '<td>' . $user['bureau'] . '</td>';
-                  echo "<td>$codebarre</td>";
+                  echo "<td id= " . $user['_id'] . ">$codebarre</td>";
                   echo '<td><a href="users.php?edit=' . $user['_id'] . '&invalide=' . $show_only_invalide . ' "class="btn btn-secondary"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></td>';
                   echo '<td><a href="traitements.php?delete=' . $user['_id'] . '&invalide=' . $show_only_invalide . ' "class="btn btn-secondary"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></td>';
                   echo '</tr>';
@@ -187,3 +187,20 @@ if ($count_users > 0) {
 </body>
 
 </html>
+
+<script language="javascript" type="text/javascript">
+    function printDiv(divID) {
+      var divToPrint=document.getElementById(divID);
+        var newWin=window.open('','Print-Window');
+        newWin.document.open();
+        newWin.document.write('<html><body onload="window.print()">'+divToPrint.innerHTML+'</body></html>');
+        newWin.document.close();
+        newWin.close();
+    }
+$( document ).ready(function() {
+  $( "img" ).click(function() {
+    printDiv($(this).parent()[0].id);
+  });
+});
+
+</script>
