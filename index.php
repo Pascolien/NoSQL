@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+  <title>Outil de migration - Accueil</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -60,7 +60,7 @@ if (isset($_GET['invalide']) && $_GET['invalide'] == 1) {
         <li <?php if ($show_only_invalide == 1) { echo "class=active";} ?>><a href="index.php?invalide=1">Liste des enregistrements invalides</a></li>
         <li><a href="users.php">Ajouter un utilisateur</a></li>
         <li class=""><a href="import.php">Importer via un CSV</a></li>
-        <li><a href="codebarre.php">Générer les codes barre manquants</a></li>
+        <!--<li><a href="codebarre.php">Générer les codes barre manquants</a></li>-->
         <li><a href="traitements.php?deleteAll=1">Tout supprimer</a></li>
       </ul>
     </div><!--/.nav-collapse -->
