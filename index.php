@@ -31,6 +31,9 @@
     td:empty{
       background: rgba(217, 83, 79, 0.51);
     }
+    img {
+      cursor: pointer;
+    }
     </style>
 <body>
 
