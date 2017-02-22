@@ -51,7 +51,8 @@ if (isset($_GET['edit']) && !empty($_GET['edit'])) {
   $get_user = $u->get($id_edit);
 
   ?>
-  <h3 style="text-align:center;">Mise à jour d'un enregistrement</h3>
+  <br>
+  <h3 style="text-align:center;">Mise à jour d'un client</h3><br><br>
 
   <div class="container">
     <div class="row">
@@ -126,7 +127,7 @@ if (isset($_GET['edit']) && !empty($_GET['edit'])) {
 } else {
 ?>
 <br>
-<h3 style="text-align:center;">Ajout d'un enregistrement</h3>
+<h3 style="text-align:center;">Ajouter un client</h3>
 <br><br>
 <div class="container">
   <div class="row">

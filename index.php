@@ -200,10 +200,9 @@ if ($count_users > 0) {
         newWin.document.close();
         newWin.close();
     }
-$( document ).ready(function() {
-  $( "img" ).click(function() {
-    printDiv($(this).parent()[0].id);
-  });
-});
-
+    $( document ).ready(function() {
+      $( "img" ).click(function() {
+        printDiv($(this).parent()[0].id);
+      });
+    });
 </script>
